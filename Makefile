@@ -1,4 +1,5 @@
-export WASI_SDK_PATH=/home/rcarmo/Build/wasi-sdk/build/install/opt
+# override this by using WASI_SDK_PATH=foo make
+export WASI_SDK_PATH?=$(HOME)/Build/wasi-sdk/build/install/opt
 
 build:
 	$(WASI_SDK_PATH)/bin/clang \
