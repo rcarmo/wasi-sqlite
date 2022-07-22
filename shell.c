@@ -108,7 +108,7 @@ typedef unsigned char u8;
 #include <ctype.h>
 #include <stdarg.h>
 
-#if !defined(_WIN32) && !defined(WIN32)
+#if !defined(_WIN32) && !defined(WIN32) && !defined(__wasi__)
 # include <signal.h>
 # if !defined(__RTP__) && !defined(_WRS_KERNEL)
 #  include <pwd.h>
@@ -277,7 +277,7 @@ static sqlite3_int64 timeOfDay(void){
   return t;
 }
 
-#if !defined(_WIN32) && !defined(WIN32) && !defined(__minux)
+#if !defined(_WIN32) && !defined(WIN32) && !defined(__minux) && !defined(__wasi__)
 #include <sys/time.h>
 #include <sys/resource.h>
 
@@ -22815,7 +22815,7 @@ static char *find_home_dir(int clearFlag){
   if( home_dir ) return home_dir;
 
 #if !defined(_WIN32) && !defined(WIN32) && !defined(_WIN32_WCE) \
-     && !defined(__RTP__) && !defined(_WRS_KERNEL)
+     && !defined(__RTP__) && !defined(_WRS_KERNEL) && !defined(__wasi__)
   {
     struct passwd *pwent;
     uid_t uid = getuid();
