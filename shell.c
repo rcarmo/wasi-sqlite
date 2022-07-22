@@ -4887,7 +4887,11 @@ static int writeFile(
         if( errno!=EEXIST
          || 0!=fileStat(zFile, &sStat)
          || !S_ISDIR(sStat.st_mode)
-         || ((sStat.st_mode&0777)!=(mode&0777) && 0!=chmod(zFile, mode&0777))
+         || ((sStat.st_mode&0777)!=(mode&0777) 
+#ifndef __wasi__
+         && 0!=chmod(zFile, mode&0777)
+#endif
+         )
         ){
           return 1;
         }
@@ -4907,7 +4911,11 @@ static int writeFile(
         }
       }
       fclose(out);
-      if( rc==0 && mode && chmod(zFile, mode & 0777) ){
+      if( rc==0 && mode 
+#ifndef __wasi__
+      && chmod(zFile, mode & 0777)
+#endif 
+      ){
         rc = 1;
       }
       if( rc ) return 2;

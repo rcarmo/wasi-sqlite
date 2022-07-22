@@ -5,12 +5,12 @@ build:
 	$(WASI_SDK_PATH)/bin/clang \
 		--sysroot=$(WASI_SDK_PATH)/share/wasi-sysroot \
 		--target=wasm32-wasi \
-		-Wl,--allow-undefined-file=wasm.syms \
 		-Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wundef -Wuninitialized -Wunused -Wno-unused-parameter -Wwrite-strings -Wchar-subscripts -funsigned-char \
 		-DNDEBUG -D_HAVE_SQLITE_CONFIG_H \
 		-DSQLITE_OS_OTHER \
 		-DSQLITE_OMIT_LOAD_EXTENSION \
 		-DSQLITE_OMIT_DECLTYPE \
+		-DSQLITE_OMIT_POPEN \
 		-D_WASI_EMULATED_SIGNAL \
 		-D_WASI_EMULATED_PROCESS_CLOCKS \
 		-lwasi-emulated-getpid \
