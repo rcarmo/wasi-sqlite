@@ -6,7 +6,7 @@ build:
 		--target=wasm32-wasi \
 		-Wl,--allow-undefined-file=wasm.syms \
 		-Wall -Wextra -Wno-sign-compare -Wno-missing-field-initializers -Wundef -Wuninitialized -Wunused -Wno-unused-parameter -Wwrite-strings -Wchar-subscripts -funsigned-char \
-		-O2 -g -DNDEBUG -D_HAVE_SQLITE_CONFIG_H \
+		-DNDEBUG -D_HAVE_SQLITE_CONFIG_H \
 		-DSQLITE_OS_OTHER \
 		-DSQLITE_OMIT_LOAD_EXTENSION \
 		-DSQLITE_OMIT_DECLTYPE \
