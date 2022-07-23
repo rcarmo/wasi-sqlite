@@ -18,18 +18,20 @@ build:
 		-funsigned-char \
 		-DNDEBUG \
 		-D_HAVE_SQLITE_CONFIG_H \
-		-DSQLITE_OS_OTHER \
-		-DSQLITE_TEMP_STORE=3 \
+		-DSQLITE_OS_UNIX \
+		-DSQLITE_TEMP_STORE=0 \
 		-DSQLITE_OMIT_LOAD_EXTENSION \
 		-DSQLITE_OMIT_DECLTYPE \
 		-DSQLITE_OMIT_POPEN \
-		-DSQLITE_SHELL_WASM_MODE \
 		-D_WASI_EMULATED_SIGNAL \
+		-D_WASI_EMULATED_MMAN \
 		-D_WASI_EMULATED_PROCESS_CLOCKS \
+		-lwasi-emulated-mman \
 		-lwasi-emulated-getpid \
 		-lwasi-emulated-signal \
 		-lwasi-emulated-process-clocks \
 		*.c \
 		-o sqlite3.wasm
+	# use curl to get it onto a-Shell
 	python3 -m http.server 8001
 	
