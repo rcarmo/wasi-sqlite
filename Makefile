@@ -31,4 +31,5 @@ build:
 		-lwasi-emulated-process-clocks \
 		*.c \
 		-o sqlite3.wasm
+	python3 -m http.server 8001
 	
