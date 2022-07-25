@@ -672,6 +672,10 @@ static char *local_getline(char *zLine, FILE *in){
     }
     if( fgets(&zLine[n], nLine - n, in)==0 ){
       if( n==0 ){
+#ifdef __wasi__
+        // try to limit input polling, which seems to help with crashing when idle inside a-Shell
+        sleep(0.1)
+#endif
         free(zLine);
         return 0;
       }
